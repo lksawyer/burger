@@ -1,0 +1,35 @@
+<h2>You can eat these burgers</h2>
+<ul>
+	{{#each burgers}}
+		{{#unless this.devoured}}
+			<li>	
+				Name: {{this.burger_name}}</li>
+				State: {{this.devoured}}</li>
+				<form method="POST" action="/api/update/{{this.id}}?_method=PUT">
+					<input type="hidden" name="id" value={{this.id}}>
+					<button type="submit">Devour!</button>
+				</form>
+			</li>
+		{{/unless}}
+	{{/each}}
+</ul>
+
+<h2>Devoured burgers</h2>
+<ul>
+	{{#each burgers}}
+		{{#if this.devoured}}
+			<li>	
+				Name: {{this.burger_name}}</li>
+				State: {{this.devoured}}</li>
+			</li>
+		{{/if}}
+	{{/each}}
+</ul>
+
+
+<h2>Create a burger</h2>
+
+<form method="POST" action="/api/create">
+	<input type="text" name="burger">
+	<button type="submit">Add burger!</button>
+</form>
